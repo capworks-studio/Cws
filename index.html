@@ -73,7 +73,7 @@ transform-style:preserve-3d;
 transition:transform .15s ease-out;
 }
 
-/* ===== LOGO (RELIEF GRAVÉ SANS LUMIÈRE) ===== */
+/* ===== LOGO ===== */
 .logo{
 font-size:7rem;
 font-weight:900;
@@ -83,51 +83,58 @@ gap:2px;
 transform-style:preserve-3d;
 }
 
+/* ===== LETTRES : FACE SOMBRE + RELIEF NÉON ===== */
 .logo span{
 display:inline-block;
 
-/* 🎨 néon vivant (bleu → violet → cyan) */
-background:linear-gradient(
-90deg,
-#00e5ff,
-#4da3ff,
-#b56bff,
-#00e5ff
-);
-background-size:300% 300%;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+/* ✔ FACE sombre */
+color:#0b0f1a;
 
-/* 🪨 relief solide (sans glow externe) */
+/* ❌ on enlève le gradient de la face */
+background:none;
+-webkit-background-clip:unset;
+background-clip:unset;
+-webkit-text-fill-color:unset;
+
+/* ===== RELIEF NÉON ===== */
 text-shadow:
-0 1px 0 #061018,
-0 2px 0 #04101a,
-0 3px 0 #020a12,
-0 4px 0 #02070e,
-0 8px 14px rgba(0,0,0,0.55);
+0 1px 0 #00e5ff,
+0 2px 0 #4da3ff,
+0 3px 0 #b56bff,
+0 6px 10px rgba(0,229,255,0.55),
+0 12px 25px rgba(181,107,255,0.35);
 
-/* ✨ animation couleur + flottement */
-animation:
-neonShift 6s ease-in-out infinite,
-float 5s ease-in-out infinite;
+/* animation du glow */
+animation:glowSwap 3.5s ease-in-out infinite;
 }
 
-/* 🎨 mouvement du néon */
-@keyframes neonShift{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+@keyframes glowSwap{
+0%{
+text-shadow:
+0 1px 0 #00e5ff,
+0 2px 0 #4da3ff,
+0 3px 0 #b56bff,
+0 6px 10px rgba(0,229,255,0.55),
+0 12px 25px rgba(181,107,255,0.35);
 }
 
-/* 🪶 léger mouvement 3D naturel */
-@keyframes float{
-0%,100%{transform:translateY(0px);}
-50%{transform:translateY(-4px);}
+50%{
+text-shadow:
+0 1px 0 #b56bff,
+0 2px 0 #00e5ff,
+0 3px 0 #4da3ff,
+0 6px 12px rgba(181,107,255,0.55),
+0 12px 28px rgba(0,229,255,0.35);
 }
 
-@keyframes float{
-0%,100%{transform:translateY(0px);}
-50%{transform:translateY(-4px);}
+100%{
+text-shadow:
+0 1px 0 #00e5ff,
+0 2px 0 #4da3ff,
+0 3px 0 #b56bff,
+0 6px 10px rgba(0,229,255,0.55),
+0 12px 25px rgba(181,107,255,0.35);
+}
 }
 
 /* ===== SUBTITLE ===== */
@@ -188,22 +195,18 @@ transform:translateZ(20px);
 
 <div class="container" id="scene">
 
-<!-- LOGO -->
 <div class="logo">
 <span>C</span><span>A</span><span>P</span><span>W</span><span>O</span><span>R</span><span>K</span><span>S</span>
 </div>
 
-<!-- SUBTITLE -->
 <div class="subtitle">
 DÉVELOPPEMENT • CRÉATIVITÉ • PASSION
 </div>
 
-<!-- BUTTON -->
 <a href="home.html" class="enter-btn" id="btn">
 Entrer dans l'univers →
 </a>
 
-<!-- MAINTENANCE -->
 <div class="maintenance" id="maintenance">
 ⚠️ Le site est actuellement indisponible.<br>
 Bientôt disponible →
@@ -213,15 +216,11 @@ Bientôt disponible →
 
 <script>
 
-/* ===========================
-MODE GLOBAL
-=========================== */
 const IS_MAINTENANCE = false;
 
 const btn = document.getElementById("btn");
 const maintenance = document.getElementById("maintenance");
 
-/* logique propre */
 if(IS_MAINTENANCE){
 btn.removeAttribute("href");
 btn.textContent = "Bientôt disponible";
@@ -230,9 +229,7 @@ maintenance.style.display = "block";
 maintenance.style.display = "none";
 }
 
-/* ===========================
-LIGNES
-=========================== */
+/* ===== LIGNES ===== */
 for(let i=25;i--;){
 const l=document.createElement("div");
 l.className="line";
@@ -242,9 +239,7 @@ l.style.animationDelay=(-Math.random()*10)+"s";
 document.body.appendChild(l);
 }
 
-/* ===========================
-CAMÉRA 3D SOURIS
-=========================== */
+/* ===== CAMÉRA 3D ===== */
 const scene=document.getElementById("scene");
 
 document.addEventListener("mousemove",(e)=>{
