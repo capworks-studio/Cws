@@ -271,7 +271,7 @@ body::before{
    CONFIGURATION
    =========================== */
 
-const SITE_OPEN = false; // true = bouton actif | false = maintenance
+const SITE_OPEN = false;
 
 /* ===========================
    LIGNES NÉON
@@ -308,7 +308,7 @@ if(!SITE_OPEN){
 
     notice.innerHTML = `
         ⚠️ Le site est actuellement indisponible.<br>
-        Nous préparons quelque chose d'incroyable...
+        Nous sommes entrain de le rénover, merci de patienter !
     `;
 
     button.parentNode.insertBefore(notice, button);
