@@ -371,16 +371,16 @@ const CAT_FIELDS={
   games:[ ['downloadUrl','Lien de téléchargement','text'], ['playUrl','Lien pour jouer (web)','text'], ['platforms','Plateformes (ex: Windows, Web)','text'], ['repoUrl','Lien du code (repo)','text'] ],
   software:[ ['downloadUrl','Lien de téléchargement','text'], ['url','Site / page du logiciel','text'], ['version','Version','text'], ['os','OS supportés','text'] ],
   animations:[ ['downloadUrl','Lien de téléchargement','text'], ['software','Logiciel utilisé','text'], ['resolution','Résolution','text'] ],
-  bots:[ ['inviteUrl','Lien d\\'invitation Discord','text'], ['url','Site / dashboard','text'], ['prefix','Préfixe des commandes','text'], ['servers','Nombre de serveurs','text'] ],
+  bots:[ ['inviteUrl',"Lien d'invitation Discord",'text'], ['url','Site / dashboard','text'], ['prefix','Préfixe des commandes','text'], ['servers','Nombre de serveurs','text'] ],
   ai:[ ['model','Modèle utilisé','text'], ['demoUrl','Lien de démo','text'], ['downloadUrl','Lien de téléchargement','text'], ['features','Fonctionnalités (résumé)','textarea'] ],
-  assets:[ ['downloadUrl','Lien de téléchargement (ZIP)','text'], ['size','Taille de l\\'archive (ex: 24 Mo)','text'], ['license','Licence','text'], ['folderTree','Arborescence des fichiers','tree'] ],
+  assets:[ ['downloadUrl','Lien de téléchargement (ZIP)','text'], ['size',"Taille de l'archive (ex: 24 Mo)",'text'], ['license','Licence','text'], ['folderTree','Arborescence des fichiers','tree'] ],
   other:[ ['url','Lien principal','text'], ['downloadUrl','Lien de téléchargement','text'] ]
 };
 const COMMON_FIELDS=[
   ['title','Titre','text'], ['desc','Description courte','textarea'], ['longDesc','Description complète','textarea'],
   ['tags','Tags (séparés par des virgules)','text'], ['tech','Technologies (séparées par des virgules)','text'],
   ['imageUrl','Image (URL)','text'], ['videoUrl','Vidéo YouTube (URL)','text'], ['duration','Durée (ex: 2:45)','text'],
-  ['order','Ordre d\\'affichage','number']
+  ['order',"Ordre d'affichage",'number']
 ];
 
 function fieldHtml(id,label,type,opts){
@@ -636,7 +636,7 @@ async function renderTicketsView(c){
   c.innerHTML=`<h2>🎟 Tickets de support</h2><div class="sub">Salons de discussion utilisateurs.</div><div id="ticketsList">Chargement...</div>`;
   const tickets=await apiGet('/api/admin/tickets');
   if(tickets.error){ $('ticketsList').innerHTML=`<div class="empty-hint">Erreur : ${esc(tickets.error)}</div>`; return; }
-  if(!tickets.length){ $('ticketsList').innerHTML='<div class="empty-hint">Aucun ticket. Répondez aux utilisateurs depuis la section Support de l\\'accueil.</div>'; return; }
+  if(!tickets.length){ $('ticketsList').innerHTML="<div class=\"empty-hint\">Aucun ticket. Répondez aux utilisateurs depuis la section Support de l'accueil.</div>"; return; }
   $('ticketsList').innerHTML=tickets.map(t=>{
     const msgs=t.messages||[]; const last=msgs[msgs.length-1];
     return `<div class="item-row">
