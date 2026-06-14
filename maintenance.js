@@ -2,7 +2,7 @@
  * CapWorks Studio — Fichier de maintenance
  */
 
-const IS_MAINTENANCE = true;
+const IS_MAINTENANCE = false;
 
 const MAINTENANCE_MESSAGE = "⚠️ Le site est actuellement indisponible. \nCe site est en cours de rénovation afin de vous offrir une meilleure expérience.";
 
