@@ -440,6 +440,8 @@ function openProjForm(cat,id){
     if(type==='tree'){ el.value=treeToText(proj.folders,proj.files); return; }
     el.value=proj[fid]??'';
   });
+  // Champs gérés séparément
+  const hlEl=$('pf_highlight'); if(hlEl) hlEl.value=proj.highlight||'';
   setTog('pf_highlightOn_tog',!!proj.highlightOn);
   setTog('pf_hidden_tog',!!proj.hidden);
   wrap.scrollIntoView({behavior:'smooth',block:'start'});
