@@ -4,7 +4,7 @@
 
 const IS_MAINTENANCE = false;
 
-const MAINTENANCE_MESSAGE = "Le site est actuellement en maintenance.\nNous revenons très vite !";
+const MAINTENANCE_MESSAGE = "⚠️ Le site est actuellement indisponible. \nCe site est en cours de rénovation afin de vous offrir une meilleure expérience.";
 
 // ─── Ne pas modifier en dessous ───────────────────────────────────────────────
 
@@ -12,7 +12,7 @@ const MAINTENANCE_MESSAGE = "Le site est actuellement en maintenance.\nNous reve
   // Ne pas rediriger si on est déjà sur index.html
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   if (currentPage === 'index.html' || currentPage === '') return;
-
+ 
   if (IS_MAINTENANCE) {
     window.location.replace('index.html');
   }
